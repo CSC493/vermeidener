@@ -1,3 +1,11 @@
+---
+layout: post
+title:  "Stereo vs Monocular Vision for Obstacle Detection"
+date:   2015-01-23 12:48:56
+categories: jekyll update
+---
+
+
 Week 1: Before Class Readings
 -------------
 
