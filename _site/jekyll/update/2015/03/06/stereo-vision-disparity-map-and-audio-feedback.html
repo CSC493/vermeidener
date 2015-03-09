@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/vermeidener/stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/vermeidener/stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/vermeidener/stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title> Yuliya: Stereo Vision: Disparity Map and Audio Feedback </title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1> CSC493 - Vermeidener (Avoider) </h1>
+        <h2>Open Source version of the GitHub Pages theme, now for Jekyll</h2>
+        <a href="https://github.com/pietromenna/jekyll-architect-theme" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          
+          <h2>Yuliya: Stereo Vision: Disparity Map and Audio Feedback</h2>
+<p class="meta">06 Mar 2015</p>
+
+<h3>Stereo Vision: Disparity Map and Audio Feedback</h3>
+
+<hr>
+
+<h4>Creating a Disparity Map: OpenCV</h4>
+
+<p>In my previous approach I have mentioned using OpenCV to create a disparity map given two pictures. The most complicated part was figuring out the parameters that are supposed to be passed to the algorithm such as thresholds, minimum possible disparity value that influences shifting images, etc. </p>
+
+<p>I have decided to start with recommended parameters and refine them as needed. It turned out, I still had to make some estimations and educated guesses, but the overall result turned out quite good. For sample images I used a couple of pictures downloaded from the web.</p>
+
+<p>My first roadblock was OpenCV itself. The documentation could be more detailed, which would have saved me quite a lot of time. This is especially true with the parameters as they are the most important component influencing the disparity map directly - the resulting map could be either good or contain a bunch of rather meaningless speckles. Overcoming this roadblock involved setting parameters close to recommended defaults. One thing to be noted here though that this is not guaranteed to be a final setup because the data that Chris will get from his part (that is, the settings) might change it. </p>
+
+<p>After the parameters were figured out, the next thing to do was to analyze the disparity map resulted. SGBM returns back a single grayscale image, which is just a two-dimensional array. For a proof of concept I have temporarily rejected projecting a polar grid on the map and detecting the ground plane, as these just help to narrow down the parts of the map of the image to be processed (it disregards far away objects, tree branches, etc). Since no ground plane was being detected, the algorithm instead takes into consideration a base disparity of the map. Base disparity is a most frequent value encountered on the map. The deviation threshold that determines whether the pixel should be considered or disregarded is set to 1.5 of base disparity. </p>
+
+<p>After base disparity has been calculated, the algorithm parses the image using the threshold, looking at the beginning of the region where the deviation from the base disparity exceeds deviation threshold, and the end of the region. If the region size exceeds dimension threshold (this is done to eliminate noise and artifacts produced by the algorithm), then the algorithm classifies it into one of the regions: left, front, or right. As I am not using a polar grid, my simplification was splitting the image in three sectors: where left and right sectors each occupy 1/4 of the image, and 1/2 of the image is devoted to the front sector. The algorithm classifies detected obstacle into a respective sector and marks this sector as having an obstacle. </p>
+
+<p>This approach is not flawless by all means. One of the problems comes from the disparity map itself, as it gets quite difficult to analyze it with lighting and shadows, as those seem to affect disparity of the objects. I also feel that the base disparity value is something that should be used very carefully in these settings, and there should be a better way to identify obstacles. </p>
+
+<h4>Audio Feedback: Settings</h4>
+
+<p>After the regions were marked with respect to the obstacles belonging to them, it was time to use audio feedback. For the audio, I am using PyAudio, which allows me to create sounds without reading from files. The principle that I am using is pretty much the same as the authors of the stereo vision paper have used. For an obstacle in front I am using frequency of 440 Hz with both channels, for an obstacle on the left or on the right I am using frequency of 750 Hz with left or right channel. Should there be obstacles both on the left and on the right, the signal corresponding to the obstacles will be played using both channels simultaneously. </p>
+
+<h4>Conclusions</h4>
+
+<p>There is quite a lot left to do. We should connect the part that Chris wrote with this sample code to see how it behaves with actual pictures. If maps generated by the phone would be of a significantly worse quality, altering parameters and also possibly object detection should be reconsidered. If connection succeeds though, all that would be left to do will be to project a polar grid on the map, detect a ground floor, and consider only the objects that belong to the ground floor, which would then lead to better performance. </p>
+
+
+
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/pietromenna/jekyll-architect-theme/archive/master.zip" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/pietromenna/jekyll-architect-theme/archive/master.tar.gz" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/jasonlong/architect-theme">architect-theme</a> is maintained by <a href="https://github.com/jasonlong">jasonlong</a>.</p>
+
+          <p class="repo-owner"><a href="https://github.com/pietromenna/jekyll-architect-theme">jekyll-architect-theme</a> is maintained by <a href="https://github.com/pietromenna">pietromenna</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  </body>
+</html>
