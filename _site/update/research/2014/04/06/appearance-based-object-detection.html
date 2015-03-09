@@ -13,7 +13,7 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title> CSC 493 - Vermeidener (Avoider) </title>
+    <title> Appearance based obstacle detection </title>
   </head>
 
   <body>
@@ -29,22 +29,39 @@
       <div class="inner clearfix">
         <section id="main-content">
           
-          <div id="home">
-  <h1>Blog Posts</h1>
-  <ul class="posts">
-    
-      <li><span>06 Mar 2015</span> &raquo; <a href="http://csc493.github.io/vermeidener/jekyll/update/2015/03/06/stereo-vision-disparity-map-and-audio-feedback.html">Yuliya: Stereo Vision: Disparity Map and Audio Feedback</a></li>
-    
-      <li><span>06 Feb 2015</span> &raquo; <a href="http://csc493.github.io/vermeidener/jekyll/update/2015/02/06/stereo-vision-first-attempt.html">Yuliya: Stereo Vision: First Attempt</a></li>
-    
-      <li><span>23 Jan 2015</span> &raquo; <a href="http://csc493.github.io/vermeidener/jekyll/update/2015/01/23/stereo-vs-monocular-obstacle-detection.html">Yuliya: Stereo vs Monocular Vision for Obstacle Detection</a></li>
-    
-      <li><span>06 Apr 2014</span> &raquo; <a href="http://csc493.github.io/vermeidener/jekyll/update/2014/04/06/welcome-to-jekyll.html">Welcome to Jekyll!</a></li>
-    
-      <li><span>06 Apr 2014</span> &raquo; <a href="http://csc493.github.io/vermeidener/update/research/2014/04/06/appearance-based-object-detection.html">Appearance based obstacle detection</a></li>
-    
-  </ul>
-</div>
+          <h2>Appearance based obstacle detection</h2>
+<p class="meta">06 Apr 2014</p>
+
+<p>The goal of this project is to assist visually impaired people to navigate an environment. I believe that the biggest problem they face is circumventing obstacles during the navigation. Therefore the first goal is to come up with a system that will help with avoiding obstacles.</p>
+
+<p>Ease of use is also a major concern, so as a team we decided to focus on using a mobile phone equipped with a camera for this.</p>
+
+<p>Due to a phone only having a single camera, and therefore not being able to detect depth accurately, my approach was to detect obstacles based on appearance.</p>
+
+<p>When searching through Google scholar, <a href="http://www.aaai.org/Papers/AAAI/2000/AAAI00-133.pdf">this</a> was one of the most cited papers on this topic. My first implementation for prototyping this approach was through Python using the OpenCV wrappers for python.</p>
+
+<p>The methodology described in the paper can be summarized as stated below.</p>
+
+<ol>
+<li>Use a Gaussian filter to reduce noise in the image;</li>
+<li>Convert the image to HSI colour space. This will separate the image into Hue, Saturation and Intensity values. While Hue and Saturation describes the colour, Intensity describes the lightness or how bright it is.</li>
+<li>Histogram Hue &amp; Intensity.</li>
+<li>Separate the image into 4 parts. Front, Left, Right and Far.</li>
+<li>Generate a threshold on the Histogram using the Front partition.</li>
+<li>Detect if there are obstacles at the Far,Left or Right using this threshold.</li>
+</ol>
+
+<p>We make few assumptions when navigating an environment with this approach.</p>
+
+<ol>
+<li>The current Front is a good sample of an area without obstacles.</li>
+<li>There are no low hanging objects.</li>
+</ol>
+
+<p>If we never move into objects, our Front partition will be free of obstacles, and thus we will always have a good reference point to decide what are obstacles in the environment.</p>
+
+<p>Auditory feedback will be given depending on where we detect obstacles, to aid in navigating.</p>
+
 
 
         </section>
