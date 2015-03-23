@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/vermeidener/stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/vermeidener/stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/vermeidener/stylesheets/print.css" media="print" />
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -32,7 +33,7 @@
           <h2>Yuliya: Stereo vs Monocular Vision for Obstacle Detection</h2>
 <p class="meta">23 Jan 2015</p>
 
-<h2>Week 1: Before Class Readings</h2>
+<h2 id="week-1-before-class-readings">Week 1: Before Class Readings</h2>
 
 <p>These are the links I have looked at over the break and first week of classes.</p>
 
@@ -48,15 +49,14 @@
 
 <p>Also, <a href="http://www.livescience.com/46236-vibrating-clothes-help-blind-navigate.html">another fun idea</a></p>
 
-<h4>Conclusion:</h4>
-
+<h4 id="conclusion">Conclusion:</h4>
 <p>It seemed to me like most of inventions in the area focus on custom device creation. Given the nature of the problem it seems even more so justified, yet this is not really the approach we want to take. It would be really cool to lay our hands on something like project Tango, so that we could build on top of existing software, but obstacle detection with a smartphone seems like an interesting and difficult problem to attack. That, of course, means we have to scope our project down, but it seems more realistic this way. </p>
 
 <p>One thing I would really like to avoid while working on the project is machine learning, as we are constrained by time and cannot devote a lot of time solely to learning that area. That means we have to investigate different ways to perform obstacle detection.</p>
 
-<h2>Week 3: Readings and Conclusions</h2>
+<h2 id="week-3-readings-and-conclusions">Week 3: Readings and Conclusions</h2>
 
-<h3>Assisting the Visually Impaired: Obstacle Detection and Warning System by Acoustic Feedback</h3>
+<h3 id="assisting-the-visually-impaired-obstacle-detection-and-warning-system-by-acoustic-feedback">Assisting the Visually Impaired: Obstacle Detection and Warning System by Acoustic Feedback</h3>
 
 <p>This paper describes a system that focuses on obstacle avoidance. Key features of the system are 3D information calculation using stereo vision, polar grid representation of the sectors the user cares about, and audio feedback.</p>
 
@@ -70,19 +70,18 @@
 
 <p>It also uses rather clever encoding of acoustic signals which, according to their studies, proves to be not annoying. This is rather important, as I remember the experiment with already existing software over last session, and that was clearly something that uses too much of a feedback. The system can tell whether the object is on the left, right, or in front of the user, it also distinguishes objects on the corner of the sight such as walls. The user can infer distance to the object from the frequency of the signal. </p>
 
-<h4>Conclusion:</h4>
-
+<h4 id="conclusion-1">Conclusion:</h4>
 <p>I love the fact there is no neural networks in this approach. This is great because I actually doubt we would be able to quickly pick up machine learning to be able to use it well enough for the project. We still need to know a lot about 3D, image processing, and linear algebra.</p>
 
 <p>The authors mention lots of approaches used by other teams, describing potential pros and cons. I actually started reading this paper simply because of this, and I was very sceptical about stereo vision, mainly because my desire was to use single device for the project. The challenge for a single device was distance detection, and stereo vision attempts to solve it rather well. </p>
 
-<p>Another thing that I liked is that the authors dedicate a lot of attention to the feedback provided to them by participants. It helped me to understand the problem better and actually answered some questions I either had or should have had in the first place. For example, a couple of days ago Chris and I had a discussion on at what distance do the objects matter for as and where should we stop caring. It turned out, we had a rather good estimate developed, but it all boiled down to the fact that we should probably ask the users in order to be sure. This paper describes initial polar grid (that represents the floor area we care for), it&#39;s division into sectors, and how it was revised based on the users&#39; feedback. In fact, it is the feedback that makes it most interesting. I was thinking about the audio feedback as well, and after reading this paper, I have a much more clear idea what to do. </p>
+<p>Another thing that I liked is that the authors dedicate a lot of attention to the feedback provided to them by participants. It helped me to understand the problem better and actually answered some questions I either had or should have had in the first place. For example, a couple of days ago Chris and I had a discussion on at what distance do the objects matter for as and where should we stop caring. It turned out, we had a rather good estimate developed, but it all boiled down to the fact that we should probably ask the users in order to be sure. This paper describes initial polar grid (that represents the floor area we care for), it’s division into sectors, and how it was revised based on the users’ feedback. In fact, it is the feedback that makes it most interesting. I was thinking about the audio feedback as well, and after reading this paper, I have a much more clear idea what to do. </p>
 
 <p>Note: this system it is not fault proof. It can produce false positives, for example, claiming sunshine reflections on a polished floor to be obstacles. </p>
 
 <p>Another note: while stereo vision seems to be very nice, it would, for one, require two devices as well as communication between them. Another question is whether to process the data on one device, split the work, or use something else for computational power.</p>
 
-<h3>A Smartphone-Based Obstacle Detection and Classification System for Assisting Visually Impaired People</h3>
+<h3 id="a-smartphone-based-obstacle-detection-and-classification-system-for-assisting-visually-impaired-people">A Smartphone-Based Obstacle Detection and Classification System for Assisting Visually Impaired People</h3>
 
 <p>This paper seemed very interesting to me as it sounded very closely related to our research problem. The main difference between it and the previous paper is that it focuses on a smartphone, thus, a single camera is used, which leads to a totally different approach which is definitely worth investigating. </p>
 
@@ -92,8 +91,7 @@
 
 <p>Obstacle classification is accomplished with the help of machine learning, where the training images are split into blocks with respect to the interest points (and their adjacency), visual words are computed for each block, and the final image representation is a histogram of visual words. For each object detected in detection phase, a frequency histogram is created to be used in processing of further images. Then, the classifier classifies the objects based on this information. </p>
 
-<h4>Conclusion:</h4>
-
+<h4 id="conclusion-2">Conclusion:</h4>
 <p>This idea seems much better in terms of it requires less hardware. Machine learning component might prove to be difficult and object detection seems to be more complicated due to the lack of stereo vision from the previous paper. On the other hand, we can attempt to omit the classification phase and use the results obtained from obstacle detection phase only as in this phase this is the thing we focus on. </p>
 
 

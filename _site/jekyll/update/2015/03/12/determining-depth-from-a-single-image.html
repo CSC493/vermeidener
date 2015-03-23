@@ -14,7 +14,7 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title> Appearance based obstacle detection </title>
+    <title> Chris: Determining Depth From A Single Image </title>
   </head>
 
   <body>
@@ -30,38 +30,25 @@
       <div class="inner clearfix">
         <section id="main-content">
           
-          <h2>Appearance based obstacle detection</h2>
-<p class="meta">06 Apr 2014</p>
+          <h2>Chris: Determining Depth From A Single Image</h2>
+<p class="meta">12 Mar 2015</p>
 
-<p>The goal of this project is to assist visually impaired people to navigate an environment. I believe that the biggest problem they face is circumventing obstacles during the navigation. Therefore the first goal is to come up with a system that will help with avoiding obstacles.</p>
+<p>When searching for possible ways to determine the depth of objects in a single still image I came across <a href="http://machinelearning.wustl.edu/mlpapers/paper_files/NIPS2005_684.pdf">this</a> paper. So I took my time reading it through multiple times to make sure as to not miss anything.</p>
 
-<p>Ease of use is also a major concern, so as a team we decided to focus on using a mobile phone equipped with a camera for this.</p>
+<p>As it turns out this paper is rather complex and covers many topics that I had never seen before. The paper talks about using Markov Random Fields for its machine learning and since I didn’t have any knowledge about either I started more research looking into Markov Random Fields.</p>
 
-<p>Due to a phone only having a single camera, and therefore not being able to detect depth accurately, my approach was to detect obstacles based on appearance.</p>
+<h3 id="markov-random-fields-mrf">Markov Random Fields (MRF)</h3>
 
-<p>When searching through Google scholar, <a href="http://www.aaai.org/Papers/AAAI/2000/AAAI00-133.pdf">this</a> was one of the most cited papers on this topic. My first implementation for prototyping this approach was through Python using the OpenCV wrappers for python.</p>
+<p>A quick definition from Wikipedia is that a MRF is a set of random variables which have a Markov Property described by an undirected graph.</p>
 
-<p>The methodology described in the paper can be summarized as stated below.</p>
+<p>So a Markov Property is actually a fairly simple concept. A Markov Property states that a future state depends only upon the current state and not upon any state that preceded the current. If we think of this from a statistics point of view, the probability of drawing a ball from a pot only depends upon the previous ball drawn, not any before that.</p>
 
-<ol>
-  <li>Use a Gaussian filter to reduce noise in the image;</li>
-  <li>Convert the image to HSI colour space. This will separate the image into Hue, Saturation and Intensity values. While Hue and Saturation describes the colour, Intensity describes the lightness or how bright it is.</li>
-  <li>Histogram Hue &amp; Intensity.</li>
-  <li>Separate the image into 4 parts. Front, Left, Right and Far.</li>
-  <li>Generate a threshold on the Histogram using the Front partition.</li>
-  <li>Detect if there are obstacles at the Far,Left or Right using this threshold.</li>
-</ol>
+<p>This means that a MRF can be thought of as an undirected graph of nodes, where the probability of each node depends only on the nodes directly connected to it.</p>
 
-<p>We make few assumptions when navigating an environment with this approach.</p>
+<h3 id="conclusion">Conclusion</h3>
 
-<ol>
-  <li>The current Front is a good sample of an area without obstacles.</li>
-  <li>There are no low hanging objects.</li>
-</ol>
+<p>After reading the paper a couple of times and learning about Markov Random Fields there are still many things that I need to research to fully understand this paper. It did seem at the moment that it was worth putting the time into researching and understanding these topics so that I could understand the paper. As the publishers of the paper had seemed to have quite good results with their experiments I thought it definitely worth trying to continue with this possible approach for determining the depth of objects in an image.</p>
 
-<p>If we never move into objects, our Front partition will be free of obstacles, and thus we will always have a good reference point to decide what are obstacles in the environment.</p>
-
-<p>Auditory feedback will be given depending on where we detect obstacles, to aid in navigating.</p>
 
 
 
