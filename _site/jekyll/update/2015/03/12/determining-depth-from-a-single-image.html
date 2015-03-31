@@ -14,7 +14,7 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title> CSC 493 - Vermeidener (Avoider) </title>
+    <title> Chris: Determining Depth From A Single Image </title>
   </head>
 
   <body>
@@ -30,28 +30,26 @@
       <div class="inner clearfix">
         <section id="main-content">
           
-          <div id="home">
-  <h1>Blog Posts</h1>
-  <ul class="posts">
-    
-      <li><span>31 Mar 2015</span> &raquo; <a href="http://csc493.github.io/vermeidener/jekyll/update/2015/03/31/stereo-vision-on-ios.html">Yuliya and Chris: Stereo Vision: Disparity Map on iOS Part 2</a></li>
-    
-      <li><span>23 Mar 2015</span> &raquo; <a href="http://csc493.github.io/vermeidener/jekyll/update/2015/03/23/stereo-vision-disparity-map-on-ios.html">Yuliya and Chris: Stereo Vision: Disparity Map on iOS</a></li>
-    
-      <li><span>12 Mar 2015</span> &raquo; <a href="http://csc493.github.io/vermeidener/jekyll/update/2015/03/12/determining-depth-from-a-single-image.html">Chris: Determining Depth From A Single Image</a></li>
-    
-      <li><span>06 Mar 2015</span> &raquo; <a href="http://csc493.github.io/vermeidener/jekyll/update/2015/03/06/stereo-vision-disparity-map-and-audio-feedback.html">Yuliya: Stereo Vision: Disparity Map and Audio Feedback</a></li>
-    
-      <li><span>06 Feb 2015</span> &raquo; <a href="http://csc493.github.io/vermeidener/jekyll/update/2015/02/06/stereo-vision-first-attempt.html">Yuliya: Stereo Vision: First Attempt</a></li>
-    
-      <li><span>23 Jan 2015</span> &raquo; <a href="http://csc493.github.io/vermeidener/jekyll/update/2015/01/23/stereo-vs-monocular-obstacle-detection.html">Yuliya: Stereo vs Monocular Vision for Obstacle Detection</a></li>
-    
-      <li><span>06 Apr 2014</span> &raquo; <a href="http://csc493.github.io/vermeidener/jekyll/update/2014/04/06/welcome-to-jekyll.html">Welcome to Jekyll!</a></li>
-    
-      <li><span>06 Apr 2014</span> &raquo; <a href="http://csc493.github.io/vermeidener/update/research/2014/04/06/appearance-based-object-detection.html">Appearance based obstacle detection</a></li>
-    
-  </ul>
-</div>
+          <h2>Chris: Determining Depth From A Single Image</h2>
+<p class="meta">12 Mar 2015</p>
+
+<p>When searching for possible ways to determine the depth of objects in a single still image I came across <a href="http://machinelearning.wustl.edu/mlpapers/paper_files/NIPS2005_684.pdf">this</a> paper. So I took my time reading it through multiple times to make sure as to not miss anything.</p>
+
+<p>As it turns out this paper is rather complex and covers many topics that I had never seen before. The paper talks about using Markov Random Fields for its machine learning and since I didn’t have any knowledge about either I started more research looking into Markov Random Fields.</p>
+
+<h3 id="markov-random-fields-mrf">Markov Random Fields (MRF)</h3>
+
+<p>A quick definition from Wikipedia is that a MRF is a set of random variables which have a Markov Property described by an undirected graph.</p>
+
+<p>So a Markov Property is actually a fairly simple concept. A Markov Property states that a future state depends only upon the current state and not upon any state that preceded the current. If we think of this from a statistics point of view, the probability of drawing a ball from a pot only depends upon the previous ball drawn, not any before that.</p>
+
+<p>This means that a MRF can be thought of as an undirected graph of nodes, where the probability of each node depends only on the nodes directly connected to it.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>After reading the paper a couple of times and learning about Markov Random Fields there are still many things that I need to research to fully understand this paper. It did seem at the moment that it was worth putting the time into researching and understanding these topics so that I could understand the paper. As the publishers of the paper had seemed to have quite good results with their experiments I thought it definitely worth trying to continue with this possible approach for determining the depth of objects in an image.</p>
+
+
 
 
         </section>

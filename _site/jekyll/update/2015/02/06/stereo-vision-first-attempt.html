@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/vermeidener/stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/vermeidener/stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/vermeidener/stylesheets/print.css" media="print" />
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -32,11 +33,10 @@
           <h2>Yuliya: Stereo Vision: First Attempt</h2>
 <p class="meta">06 Feb 2015</p>
 
-<h3>Stereo Vision: First Attempt</h3>
+<h3 id="stereo-vision-first-attempt">Stereo Vision: First Attempt</h3>
+<hr />
 
-<hr>
-
-<p>During the meeting, we have discussed possibilities for project implementation, and Chris mentioned that he would like to experiment with phone&#39;s camera to see if we can use jitter of the phone as the owner walks as a sufficient source of different images. There was more to it than that, of course, but this is his idea and so I will not go into much detail as Chris will discuss it into his section. As for me, I thought that if this succeeds, then the pictures will be taken from different angles, and so we might proceed with the stereo vision approach from the paper I have mentioned in my previous post. </p>
+<p>During the meeting, we have discussed possibilities for project implementation, and Chris mentioned that he would like to experiment with phone’s camera to see if we can use jitter of the phone as the owner walks as a sufficient source of different images. There was more to it than that, of course, but this is his idea and so I will not go into much detail as Chris will discuss it into his section. As for me, I thought that if this succeeds, then the pictures will be taken from different angles, and so we might proceed with the stereo vision approach from the paper I have mentioned in my previous post. </p>
 
 <p>I have planned for my first attempt to be something small, so that I get the general feeling about the approach, and it will be relatively easy to implement without a lot of time investment. Thus, I have thought I would look into a ground plane detection, but it turned out a bit more complicated than I thought. The reason for that was that the authors of the paper consider ground floor detection after the disparity map is done, and creating a disparity map was something I have not done before. Thus, my first step was creating a disparity map. </p>
 
