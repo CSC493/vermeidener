@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Chris: Using A Single Camera To Capture Stereoscopic Images"
-date:   2015-03-15 22:23:00
+date:   2015-03-19 22:23:00
 categories: jekyll update
 ---
 
